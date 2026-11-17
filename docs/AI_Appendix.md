@@ -14,25 +14,25 @@ Claude Code (Anthropic), working directly in the project folder with the three M
 
 ## Final prompts
 
-**System prompt (revised from Problem 2).** The Problem 2 prompt was kept and changed in four places for this task: SciPy stays disallowed, so the Student-t and mixture quantiles must be written out; functions take the static data as an argument instead of reading globals; every docstring must name the Mathematica function it translates; and computation must be separated from formatting.
+The work was done in one agentic session, not as a separate prompt per part. The prompts below are quoted exactly as typed (spelling included). The assignment PDF was attached to the first one, and the AI took the per-part requirements (Parts I to IV, the pitfalls, the deliverables list) directly from that PDF.
 
-> You are an expert software engineer with deep experience in quantitative finance and risk management. You translate legacy Mathematica code into clean, correct Python. Target: Python 3 with numpy, pandas and the standard library only. Write plain functions, descriptive names, no global variables inside functions (pass the SamplePort2 data in as an argument), no function that modifies its inputs, about 40 lines per function. Every docstring names the Mathematica function it translates and states arguments, units, return value and exceptions. Report functions return raw, unrounded numbers; a separate layer does all rounding and layout. Preserve the original logic, including its quirks, and flag every place where Mathematica's behaviour is ambiguous instead of guessing silently. If a check cannot be satisfied, say so rather than changing the check.
+**Prompt 1 (Parts I to IV in one request), with `problem5_Q.pdf` attached:**
 
-**Part I (structure).**
+> heres the latest assignment for risk management, i want you to complete everything outlined by the assignment, output the code in the risk mangement folder, the neatly organized python code, a pdf, doc of the code, the mathematica code with it, the explanations requested as their own document, and then check the code to make sure it matches the tables
 
-> Here are `Tables_Ch10.nb`, `DistFn1.m` and `SamplePort2.m`. For each of the nine outputs listed in the assignment, trace which notebook function produces it, which `DistFn1.m` functions that calls, and which `SamplePort2.m` lists those read. Then list every quirk a naive translation would mishandle. Explain specifically why the holdings display shows 9 of 11 positions. Quote the line of code behind each claim so I can check it.
+**Prompt 2 (packaging and deliverables):**
 
-**Part II (translate `DistFn1.m`).**
+> now format everything for assignment submission neatly in my risk mangement folder, as well as the pdf output of the code and the explanations that the professor wants submitted
 
-> Translate every `DistFn1.m` function needed for the nine outputs into `src/distfn.py`, following the system prompt. Here are `SamplePort2.m` and my Problem 2 Python so you can see how the lists are used. Positions must be identified by their place in `seclist`, never by security name, because "10yr UST" appears twice. Translate the custom mixture `pdf`/`cdf`/`quantile` rather than calling a library. List the functions you did not translate and why.
+**Prompt 3 (repository and remaining items):**
 
-**Part III (tables).**
+> push the checkpoint to its own title as risk mangement pset 5 and then finish all the open stuff please
 
-> Translate the notebook into a script, `src/tables_ch10.py`, that calls the Part II functions. All portfolio inputs live in one file, `src/inputs.py`. Reproduce the notebook's row and column layout and its `NumberForm`/`AccountingForm` rounding, including the switch to scientific notation. Save raw CSVs and formatted tables. Production code must never read `reference/`.
+Two shorter prompts in between asked the AI to commit and to push.
 
-**Part IV (tests and verification).**
+**Standing instructions the AI also read.** The Problem 2 system prompt (`Mathematica_to_pythonPrompttemplate.md`) was in the project folder and the AI read it before writing code. Its rules carried over: numpy, pandas and the standard library only; plain functions; descriptive names; no global variables inside functions; functions of about 40 lines; docstrings that state arguments, units and return values; preserve the Mathematica logic and flag ambiguity instead of guessing.
 
-> Design scenarios that exercise the Known Pitfalls. Write `verify.py` to run every scenario, compare each output cell by cell with `reference/`, apply the one-unit-in-the-last-digit rule, print a summary and write a side-by-side HTML report with mismatches highlighted. Write unit tests for PVs and DV01s, the VCV and volatilities, contributions and correlations, best-hedge and replicating routines, and the mixture CDF and inverse CDF. Do not report anything as verified that was not actually compared.
+**How the Problem 2 prompt should be revised for this task.** It was not re-sent in revised form, but four changes describe what the AI did beyond it and belong in the prompt next time: (1) pass the `SamplePort2.m` data into every function as an argument, so a market-data scenario cannot leak into the base data; (2) name the Mathematica function each Python function translates in its docstring; (3) report functions return raw, unrounded numbers and a separate layer does all rounding and layout; (4) identify positions by their place in `seclist`, never by security name, and never report something as verified that was not actually compared.
 
 ## What the AI got wrong, and how it was caught
 

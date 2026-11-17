@@ -133,4 +133,5 @@ displayed digit). The neighbouring FTEEqSpecific DV01, also 6,500,000, shows
    `Tables_Ch10.nb` (scenario 2 also loads `SamplePort2_scenario2.m`), evaluate,
    and save the notebook PDF into `reference/<scenario>/`.
 3. Fill in the contribution statement in `docs/AI_Appendix.md`.
-4. Commit and push; the checkpoint goes on a branch named `bionic/checkpoint`.
+
+The checkpoint is on the branch `bionic/checkpoint`; later work is on `main`.
