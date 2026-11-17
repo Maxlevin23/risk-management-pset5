@@ -46,7 +46,7 @@ Notebook source: `displayRF`
 | FTE Equity | €5mn | 168,900 |  |  |  |  |  |
 |  |  |  | CACEqIndex | 5×10^6 | percent | 0.02537 | 115,400 |
 |  |  |  | FTEEqSpecific | 7×10^6 | percent | 0.02840 | 184,600 |
-|  |  |  | EURFX | 7×10^6 | percent | 0.00791 | 51,410 |
+|  |  |  | EURFX | 6×10^6 | percent | 0.00791 | 51,410 |
 | GBPCash | £-10mn | 129,800 |  |  |  |  |  |
 |  |  |  | GBPFX | -2×10^7 | percent | 0.00811 | 129,800 |
 | EURCash | €15mn | 154,200 |  |  |  |  |  |

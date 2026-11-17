@@ -138,8 +138,10 @@ def format_holdings(raw):
              label("Subportfolio")]]
     for row in raw.itertuples(index=False):
         amount = row[2]
-        amount_text = str(int(amount)) if float(amount).is_integer() else str(amount)
-        grid.append([label(row[1]), (amount_text, 1.0), label(row[3]), label(row[4])])
+        whole = float(amount).is_integer()
+        amount_text = str(int(amount)) if whole else str(amount)
+        unit = 1.0 if whole else 10.0 ** -len(amount_text.split(".")[1])
+        grid.append([label(row[1]), (amount_text, unit), label(row[3]), label(row[4])])
     return grid
 
 

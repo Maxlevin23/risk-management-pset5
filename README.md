@@ -21,21 +21,21 @@ each Mathematica table beside its Python counterpart with mismatches in red.
 
 | Scenario | What it is | Mathematica reference | Result |
 | --- | --- | --- | --- |
-| original | notebook portfolio | displayed values transcribed from the notebook PDF | 9 of 9 outputs pass, 506 of 506 cells (1 by the one-unit rule) |
-| scenario1 | portfolio changes | **not yet produced** | Python runs; not yet compared |
-| scenario2 | market-data change | **not yet produced** | Python runs; not yet compared |
-| scenario3 | new securities and settle date | **not yet produced** | Python runs; not yet compared |
+| original | notebook portfolio | displayed values transcribed from the notebook PDF | 9 of 9 outputs pass, 506 of 506 cells |
+| scenario1 | portfolio changes | full-precision export from Mathematica 15.0.1 | 9 of 9 outputs pass, 514 of 514 cells |
+| scenario2 | market-data change | full-precision export from Mathematica 15.0.1 | 9 of 9 outputs pass, 514 of 514 cells |
+| scenario3 | new securities and settle date | full-precision export from Mathematica 15.0.1 | 9 of 9 outputs pass, 570 of 570 cells |
 
-The scenario references need Mathematica, which was not available on the machine
-where the Python was written. To produce them, run once:
+Every one of the 2,104 cells shows the identical displayed value; none needs the
+one-unit tolerance. All 40 tests pass, including the comparison of individual
+functions with `reference/unit_values.json` at full precision.
+
+The scenario references were produced by running `mathematica/RunScenarios.wl`
+in Wolfram Cloud. To regenerate them with a local Mathematica:
 
 ```bash
 wolframscript -file mathematica/RunScenarios.wl
 ```
-
-This writes `reference/scenario*/tables.json` and `reference/unit_values.json`;
-`python verify.py` then compares all four scenarios, and the two tests that
-currently report SKIPPED start checking. See "To finish before submitting" below.
 
 ## Layout
 
@@ -116,21 +116,19 @@ The lists were converted from `SamplePort2.m` by a script (braces to brackets,
 precision backticks removed), not retyped, so the 18 x 18 correlation matrix
 and the volatilities are character-for-character the Mathematica values.
 
-## Known remaining discrepancy
+## A discrepancy that was found and resolved
 
-One cell, Table 1, FTE Equity, EURFX DV01: Mathematica shows `6×10^6`, Python
-shows `7×10^6`. The true value is exactly 6,500,000 and the display keeps one
-digit, so floating-point noise of about 1e-8 decides the rounding. This is the
-"value on a rounding boundary" case the assignment allows (one unit in the last
-displayed digit). The neighbouring FTEEqSpecific DV01, also 6,500,000, shows
-`7×10^6` in both.
+In Table 1, FTE Equity has two DV01s that are both 6,500,000 to within 1e-8 but
+display as `7×10^6` (FTEEqSpecific) and `6×10^6` (EURFX), because the display keeps
+one digit. Python first showed `7×10^6` for both. Mathematica evaluates
+`holding*1000000*x/fx` as (exact integer product) × (x × fx⁻¹); `eqtypv` and
+`eqtyFutpv` now use that order and reproduce Mathematica's values to the last bit.
 
-## To finish before submitting
+## Not included
 
-1. Run `wolframscript -file mathematica/RunScenarios.wl` (needs Mathematica),
-   then `python verify.py`, and paste the new summary into the report.
-2. For each scenario, apply `reference/<scenario>/inputs.m` to a copy of
-   `Tables_Ch10.nb` (scenario 2 also loads `SamplePort2_scenario2.m`), evaluate,
-   and save the notebook PDF into `reference/<scenario>/`.
+PDFs of the rerun scenario notebooks. To add them, apply
+`reference/<scenario>/inputs.m` to a copy of `Tables_Ch10.nb` (scenario 2 also
+loads `SamplePort2_scenario2.m`), evaluate, and save the PDF into
+`reference/<scenario>/`.
 
 The checkpoint is on the branch `bionic/checkpoint`; later work is on `main`.

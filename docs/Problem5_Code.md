@@ -571,7 +571,9 @@ def eqtypv(inputs, settledate, holding, parms, data):
     factor = 1.0
     for level, beta in zip(inputs[:parameter_count - 1], parms[:parameter_count - 1]):
         factor *= level ** beta
-    return holding * 1000000 * factor / inputs[-1]
+    # Mathematica evaluates a*b*c/d as (exact a*b) * (c * d^-1); the same order is
+    # used here so results agree to the last bit (it decides "6x10^6" vs "7x10^6").
+    return (holding * 1000000) * (factor * (1 / inputs[-1]))
 
 
 def eqtyFutpv(inputs, settledate, holding, parms, data):
@@ -601,7 +603,7 @@ def eqtyFutpv(inputs, settledate, holding, parms, data):
     for level, beta in zip(inputs[:parameter_count - 1], parms[:parameter_count - 1]):
         factor *= level ** beta
     fx_rate = data["marketDataValues"][data["marketDataNames"].index(parms[1] + "FX")]
-    return holding * 1000000 * factor / fx_rate
+    return (holding * 1000000) * (factor * (1 / fx_rate))  # same order as eqtypv
 
 
 # secPVFunction holds Mathematica symbols; here it holds names looked up below.
@@ -1730,8 +1732,10 @@ def format_holdings(raw):
              label("Subportfolio")]]
     for row in raw.itertuples(index=False):
         amount = row[2]
-        amount_text = str(int(amount)) if float(amount).is_integer() else str(amount)
-        grid.append([label(row[1]), (amount_text, 1.0), label(row[3]), label(row[4])])
+        whole = float(amount).is_integer()
+        amount_text = str(int(amount)) if whole else str(amount)
+        unit = 1.0 if whole else 10.0 ** -len(amount_text.split(".")[1])
+        grid.append([label(row[1]), (amount_text, unit), label(row[3]), label(row[4])])
     return grid
 
 
@@ -2665,9 +2669,9 @@ def test_security_dv01s_match_mathematica_table_1():
     _, _, values = distfn.populateSecDV01s(SECLIST, HOLDINGS, SETTLEDATE, fresh_data())
     shown = [formatting.number_form(value, 5, 0, digit_block=True)[0]
              for position_values in values for value in position_values]
-    # EURFX on FTE Equity is exactly 6.5 million: a rounding boundary (see README).
-    mismatches = [(a, b) for a, b in zip(shown, displayed) if a != b]
-    assert mismatches in ([], [("7×10^6", "6×10^6")]), mismatches
+    # FTEEqSpecific and EURFX on FTE Equity are both 6.5 million to within 1e-8, yet
+    # display as 7x10^6 and 6x10^6: only Mathematica's operation order reproduces that.
+    assert shown == displayed
 
 
 def test_duplicate_securities_stay_separate_positions():

@@ -1,7 +1,7 @@
 Scenario   Output                                         Cells compared Cells matching  Pass/Fail
 ----------------------------------------------------------------------------------------------------
 original   1. Holdings table                                          40             40  PASS
-original   2. Table 1: Securities, risk factors, DV01s               240            240  PASS (1 within one unit)
+original   2. Table 1: Securities, risk factors, DV01s               240            240  PASS
 original   3. Risk-category summary                                   36             36  PASS
 original   4. Top three contributors                                  35             35  PASS
 original   5. Best single hedge                                       21             21  PASS
@@ -9,30 +9,30 @@ original   6. Top three best hedges                                   35        
 original   7. Best replicating portfolios                             63             63  PASS
 original   8. Volatility by subportfolio                              24             24  PASS
 original   9. VaR summary                                             12             12  PASS
-scenario1  1. Holdings table                                           -              -  NO REFERENCE
-scenario1  2. Table 1: Securities, risk factors, DV01s                 -              -  NO REFERENCE
-scenario1  3. Risk-category summary                                    -              -  NO REFERENCE
-scenario1  4. Top three contributors                                   -              -  NO REFERENCE
-scenario1  5. Best single hedge                                        -              -  NO REFERENCE
-scenario1  6. Top three best hedges                                    -              -  NO REFERENCE
-scenario1  7. Best replicating portfolios                              -              -  NO REFERENCE
-scenario1  8. Volatility by subportfolio                               -              -  NO REFERENCE
-scenario1  9. VaR summary                                              -              -  NO REFERENCE
-scenario2  1. Holdings table                                           -              -  NO REFERENCE
-scenario2  2. Table 1: Securities, risk factors, DV01s                 -              -  NO REFERENCE
-scenario2  3. Risk-category summary                                    -              -  NO REFERENCE
-scenario2  4. Top three contributors                                   -              -  NO REFERENCE
-scenario2  5. Best single hedge                                        -              -  NO REFERENCE
-scenario2  6. Top three best hedges                                    -              -  NO REFERENCE
-scenario2  7. Best replicating portfolios                              -              -  NO REFERENCE
-scenario2  8. Volatility by subportfolio                               -              -  NO REFERENCE
-scenario2  9. VaR summary                                              -              -  NO REFERENCE
-scenario3  1. Holdings table                                           -              -  NO REFERENCE
-scenario3  2. Table 1: Securities, risk factors, DV01s                 -              -  NO REFERENCE
-scenario3  3. Risk-category summary                                    -              -  NO REFERENCE
-scenario3  4. Top three contributors                                   -              -  NO REFERENCE
-scenario3  5. Best single hedge                                        -              -  NO REFERENCE
-scenario3  6. Top three best hedges                                    -              -  NO REFERENCE
-scenario3  7. Best replicating portfolios                              -              -  NO REFERENCE
-scenario3  8. Volatility by subportfolio                               -              -  NO REFERENCE
-scenario3  9. VaR summary                                              -              -  NO REFERENCE
+scenario1  1. Holdings table                                          48             48  PASS
+scenario1  2. Table 1: Securities, risk factors, DV01s               240            240  PASS
+scenario1  3. Risk-category summary                                   36             36  PASS
+scenario1  4. Top three contributors                                  35             35  PASS
+scenario1  5. Best single hedge                                       21             21  PASS
+scenario1  6. Top three best hedges                                   35             35  PASS
+scenario1  7. Best replicating portfolios                             63             63  PASS
+scenario1  8. Volatility by subportfolio                              24             24  PASS
+scenario1  9. VaR summary                                             12             12  PASS
+scenario2  1. Holdings table                                          48             48  PASS
+scenario2  2. Table 1: Securities, risk factors, DV01s               240            240  PASS
+scenario2  3. Risk-category summary                                   36             36  PASS
+scenario2  4. Top three contributors                                  35             35  PASS
+scenario2  5. Best single hedge                                       21             21  PASS
+scenario2  6. Top three best hedges                                   35             35  PASS
+scenario2  7. Best replicating portfolios                             63             63  PASS
+scenario2  8. Volatility by subportfolio                              24             24  PASS
+scenario2  9. VaR summary                                             12             12  PASS
+scenario3  1. Holdings table                                          56             56  PASS
+scenario3  2. Table 1: Securities, risk factors, DV01s               288            288  PASS
+scenario3  3. Risk-category summary                                   36             36  PASS
+scenario3  4. Top three contributors                                  35             35  PASS
+scenario3  5. Best single hedge                                       21             21  PASS
+scenario3  6. Top three best hedges                                   35             35  PASS
+scenario3  7. Best replicating portfolios                             63             63  PASS
+scenario3  8. Volatility by subportfolio                              24             24  PASS
+scenario3  9. VaR summary                                             12             12  PASS

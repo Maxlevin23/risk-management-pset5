@@ -24,14 +24,14 @@ Each scenario is one small Python file in `scenarios/` with the same five names 
 
 | Scenario | Outputs | Cells compared | Cells matching | Result |
 |---|---|---|---|---|
-| original | 9 | 506 | 506 (505 identical, 1 within one unit) | **PASS**, all nine outputs |
-| scenario1 | 9 | – | – | **NO REFERENCE** (Mathematica run pending) |
-| scenario2 | 9 | – | – | **NO REFERENCE** (Mathematica run pending) |
-| scenario3 | 9 | – | – | **NO REFERENCE** (Mathematica run pending) |
+| original | 9 | 506 | 506 | **PASS**, all nine outputs |
+| scenario1 | 9 | 514 | 514 | **PASS**, all nine outputs |
+| scenario2 | 9 | 514 | 514 | **PASS**, all nine outputs |
+| scenario3 | 9 | 570 | 570 | **PASS**, all nine outputs |
 
-Per-output cell counts for the original: holdings 40/40, Table 1 240/240, category summary 36/36, top contributors 35/35, best single hedge 21/21, best three hedges 35/35, replicating portfolios 63/63, subportfolio 24/24, VaR 12/12.
+All 36 outputs pass and all 2,104 cells show the identical displayed value; none needed the one-unit tolerance. Per-output cell counts for the original: holdings 40, Table 1 240, category summary 36, top contributors 35, best single hedge 21, best three hedges 35, replicating portfolios 63, subportfolio 24, VaR 12.
 
-**The scenarios have not yet been compared with Mathematica.** The Python side runs for all three and the Mathematica inputs and export script (`mathematica/RunScenarios.wl`) are in the repository, but no Mathematica kernel was available when this was written. After that script is run, `python verify.py` fills in the three rows above; this section must be updated with the result before submission.
+The reference for the original portfolio is the displayed values transcribed from the notebook PDF. The references for scenarios 1 to 3 are full-precision numbers exported by `mathematica/RunScenarios.wl`, run in Mathematica 15.0.1 (Wolfram Cloud); `verify.py` rounds them with the notebook's rules before comparing. The same run exported function-level values for the original portfolio (`reference/unit_values.json`): Python agrees with them to a relative difference of about 1e-11 or better (DV01s, variance-covariance matrix, contributions, best hedges, correlations, mixture and Student-t quantiles).
 
 ## 3. Sample side-by-side table: risk-category summary (original portfolio)
 
@@ -50,20 +50,20 @@ All nine tables appear side by side in `output/verification_report.html`.
 
 ## 4. Remaining discrepancies
 
-**One cell, within the allowed tolerance.** Table 1, FTE Equity, EURFX DV01: Mathematica displays `6×10^6`, Python `7×10^6`. The DV01 is exactly 6,500,000 (EUR 5mn at 1.30) and the display keeps a single digit, so the result depends on floating-point noise of about 1e-8 in the bump-and-revalue arithmetic; Python computes 6,500,000.00000002. The FTEEqSpecific DV01 on the same position, also 6,500,000, displays `7×10^6` in both. Its downstream value (RF position vol 51,410) matches exactly. No attempt was made to imitate Mathematica's operation order to force the digit.
+**None in the displayed tables.** One cell differed in the first complete run and is worth recording. In Table 1 the FTE Equity position has two DV01s that are both 6,500,000 to within 1e-8, yet Mathematica displays them as `7×10^6` (FTEEqSpecific) and `6×10^6` (EURFX), because the display keeps one digit and floating-point noise decides the rounding. Python first showed `7×10^6` for both. The full-precision export showed why: Mathematica evaluates `holding*1000000*x/fx` as (exact integer product) × (x × fx⁻¹), multiplying by a reciprocal instead of dividing. Writing `eqtypv` and `eqtyFutpv` in that order reproduces Mathematica's values to the last bit (6500000.000000022 and 6499999.999999975), and the cell now matches in every scenario.
 
-**Deliberate differences.** (a) Python's holdings table shows all 11 positions; the notebook shows 9 (hard-coded `n = 9`). (b) With fewer than five risk factors the notebook's replicating-portfolio routine fails; Python stops at the number available. (c) The Student-t and mixture quantiles use our own root finder instead of `Quantile`/`FindRoot`; agreement is to 1e-12 on the CDF, far inside display precision.
+**Deliberate differences.** (a) Python's holdings table shows all positions; the notebook shows 9 (hard-coded `n = 9`), so the original holdings comparison covers those 9 rows. (b) With fewer than five risk factors the notebook's replicating-portfolio routine fails; Python stops at the number available. (c) The Student-t and mixture quantiles use our own root finder instead of `Quantile`/`FindRoot`; they agree with Mathematica to 15 significant figures.
 
-**Not yet established.** Agreement on scenarios 1 to 3 (see section 2), and full-precision agreement of individual functions (`reference/unit_values.json` is produced by the same Mathematica script).
+**Not done.** PDFs of the rerun scenario notebooks are not in `reference/`; the scenario evidence is the exported table values. Differences of order 1e-11 remain at full precision in bump-and-revalue results where operation order differs; they are far below display precision.
 
 ## 5. Testing approach
 
-*Three layers, 40 tests, run with `python tests/run_tests.py` or `pytest`.*
+*Three layers, 40 tests, all passing, run with `python tests/run_tests.py` or `pytest`.*
 
-**Function tests** (`tests/test_pv_and_dv01.py`, `tests/test_risk_and_distributions.py`) cover the five groups the assignment lists. Because Mathematica could not be called, expected values come from three labelled sources: **(M)** values Mathematica displays in the notebook PDF, compared after applying the notebook's rounding (all 18 DV01s, 11 security vols, portfolio vol, replicating assets and percentages, five VaR rows); **(H)** closed forms that must hold exactly (par bond on a coupon date prices at 100; a swap or CDS at its par rate is worth 0; put-call parity for the bond option; cash and FX DV01 equal to USD exposure; accrued interest 73/181 of a coupon; published t-table quantiles); **(P)** properties any correct translation satisfies (contributions sum to 100%; moving a DV01 to its best hedge reproduces `volbesthedge` and any nudge raises volatility; the all-or-nothing figure equals the recomputed change; the mixture quantile inverts the CDF to 1e-12 at seven probabilities and three parameter sets; brute force confirms each stepwise replicating choice).
+**Function tests** (`tests/test_pv_and_dv01.py`, `tests/test_risk_and_distributions.py`) cover the five groups the assignment lists. Expected values come from three labelled sources: **(M)** values Mathematica displays in the notebook PDF, compared after applying the notebook's rounding (all 18 DV01s, 11 security vols, portfolio vol, replicating assets and percentages, five VaR rows); **(H)** closed forms that must hold exactly (par bond on a coupon date prices at 100; a swap or CDS at its par rate is worth 0; put-call parity for the bond option; cash and FX DV01 equal to USD exposure; accrued interest 73/181 of a coupon; published t-table quantiles); **(P)** properties any correct translation satisfies (contributions sum to 100%; moving a DV01 to its best hedge reproduces `volbesthedge` and any nudge raises volatility; the all-or-nothing figure equals the recomputed change; the mixture quantile inverts the CDF to 1e-12 at seven probabilities and three parameter sets; brute force confirms each stepwise replicating choice).
 
 **Table tests** (`tests/test_tables.py`) compare all nine formatted outputs with `reference/original/tables.json`, confirm that a deliberately wrong reference cell is caught, and confirm the matching rule accepts a one-unit difference but rejects two.
 
-**Scenario tests** run every scenario, check internal consistency, and check pitfall behaviour directly: in scenario 3 the offsetting "10yr UST" positions leave total volatility unchanged yet remain two rows with opposite DV01s. Two tests compare against Mathematica exports and report SKIPPED until those files exist, rather than passing silently.
+**Scenario tests** run every scenario, check internal consistency, and check pitfall behaviour directly: in scenario 3 the offsetting "10yr UST" positions leave total volatility unchanged yet remain two rows with opposite DV01s. Two further tests compare every scenario table and the function-level values with the Mathematica exports; they report SKIPPED, not passed, if those files are missing.
 
 Raw numbers and display are separate (`reports.py` returns floats, `formatting.py` rounds), so tests round exactly as the notebook does. The reference values were transcribed from the assignment PDF, not copied from Python output.

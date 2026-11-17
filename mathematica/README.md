@@ -11,6 +11,5 @@ It reads `reference/<scenario>/inputs.m` (and, for scenario 2,
 `reference/scenario2/SamplePort2_scenario2.m`) and writes
 `reference/<scenario>/tables.json` plus `reference/unit_values.json`.
 
-These two `.wl` files were written without access to a Mathematica kernel and
-have not been executed yet; if one fails to load, the error will point at the
-line to fix.
+Both `.wl` files were run unchanged in Mathematica 15.0.1 (Wolfram Cloud) on
+16 November 2026; that run produced the reference files now in `reference/`.

@@ -306,7 +306,9 @@ def eqtypv(inputs, settledate, holding, parms, data):
     factor = 1.0
     for level, beta in zip(inputs[:parameter_count - 1], parms[:parameter_count - 1]):
         factor *= level ** beta
-    return holding * 1000000 * factor / inputs[-1]
+    # Mathematica evaluates a*b*c/d as (exact a*b) * (c * d^-1); the same order is
+    # used here so results agree to the last bit (it decides "6x10^6" vs "7x10^6").
+    return (holding * 1000000) * (factor * (1 / inputs[-1]))
 
 
 def eqtyFutpv(inputs, settledate, holding, parms, data):
@@ -336,7 +338,7 @@ def eqtyFutpv(inputs, settledate, holding, parms, data):
     for level, beta in zip(inputs[:parameter_count - 1], parms[:parameter_count - 1]):
         factor *= level ** beta
     fx_rate = data["marketDataValues"][data["marketDataNames"].index(parms[1] + "FX")]
-    return holding * 1000000 * factor / fx_rate
+    return (holding * 1000000) * (factor * (1 / fx_rate))  # same order as eqtypv
 
 
 # secPVFunction holds Mathematica symbols; here it holds names looked up below.

@@ -91,9 +91,9 @@ def test_security_dv01s_match_mathematica_table_1():
     _, _, values = distfn.populateSecDV01s(SECLIST, HOLDINGS, SETTLEDATE, fresh_data())
     shown = [formatting.number_form(value, 5, 0, digit_block=True)[0]
              for position_values in values for value in position_values]
-    # EURFX on FTE Equity is exactly 6.5 million: a rounding boundary (see README).
-    mismatches = [(a, b) for a, b in zip(shown, displayed) if a != b]
-    assert mismatches in ([], [("7×10^6", "6×10^6")]), mismatches
+    # FTEEqSpecific and EURFX on FTE Equity are both 6.5 million to within 1e-8, yet
+    # display as 7x10^6 and 6x10^6: only Mathematica's operation order reproduces that.
+    assert shown == displayed
 
 
 def test_duplicate_securities_stay_separate_positions():

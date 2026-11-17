@@ -10,7 +10,7 @@ monofontoptions: "Scale=0.8"
 
 ## Tool
 
-Claude Code (Anthropic), working directly in the project folder with the three Mathematica source files and the assignment PDF. It read the files, wrote the code, and ran it; it could not run Mathematica.
+Claude Code (Anthropic), working directly in the project folder with the three Mathematica source files and the assignment PDF. It read the files, wrote the code, and ran it. Mathematica was run in Wolfram Cloud through a signed-in browser session, using the export script the AI wrote.
 
 ## Final prompts
 
@@ -37,11 +37,12 @@ Two shorter prompts in between asked the AI to commit and to push.
 ## What the AI got wrong, and how it was caught
 
 1. **Double rounding in the display layer.** The first `NumberForm` translation rounded to *n* significant figures and then to *f* decimals. For the CAC index volatility 0.025365051 that gives 0.025365 and then 0.02536; Mathematica shows 0.02537. Caught by comparing the first full run with the notebook PDF, cell by cell. Fixed by rounding once, to the coarser of the two precisions.
-2. **A value on a rounding boundary.** Two DV01s are exactly 6,500,000 and display with one digit. The first version showed both as `6×10^6`; after fix 1 both show `7×10^6`; Mathematica shows one of each. Investigation showed the digit is decided by floating-point noise near 1e-8, so this is reported as a known one-unit discrepancy instead of being forced.
+2. **Division where Mathematica multiplies by a reciprocal.** Two DV01s on FTE Equity are both 6,500,000 to within 1e-8 and display with one digit; Mathematica shows `7×10^6` for one and `6×10^6` for the other, Python showed `7×10^6` for both. The AI first reported this as unavoidable floating-point noise. The full-precision Mathematica export showed the exact values (6500000.000000022 and 6499999.999999975), and trying the possible operation orders showed that Mathematica computes `a*b*x/fx` as (a·b) × (x × fx⁻¹). With `eqtypv` and `eqtyFutpv` written that way the values agree to the last bit and the cell matches.
 3. **Corrupted extraction of the notebook code.** Pulling the table functions out of the `.nb` file's box format, the first attempt mis-detected where `tableContributers` ended and copied 60 lines of unrelated text and a duplicate of `reportFunction1` into the `.wl` file. Caught by listing every definition in the output file and by a bracket-balance check.
 4. **Test file that could not be imported.** The first test runner imported the code under test before adding `src/` to the path. Caught immediately by running it.
 5. **Something a reader could easily miss: the VaR mixture parameters.** `DistFn1.m` sets alpha = 0.05 and beta = 3; the notebook's `varsumm` quietly uses alpha = 0.01 and beta = 5. The AI flagged this while reading the notebook; it was confirmed by hand (0.99·Φ(−3.0325) + 0.01·Φ(−0.6065) = 1/255 at the displayed 1,680,000).
-6. **A limit, not an error.** The AI had no Mathematica kernel, so it could not produce the scenario references or full-precision function values. It wrote the export script and marked those comparisons NO REFERENCE and SKIPPED instead of reporting them as passing. The Mathematica scripts themselves are untested until they are run.
+6. **Display tolerance set too loosely for fractional holdings.** In scenario 3 the holdings of 12.5 were compared with a tolerance of one whole unit, so they were reported as "within one unit" instead of identical. Caught by reading the summary line by line after the first scenario comparison; the tolerance now follows the number of decimals shown.
+7. **Unverified claims were labelled, not hidden.** Until Mathematica could be run, the scenario comparisons were reported as NO REFERENCE and two tests as SKIPPED instead of passing. The export scripts, written without a kernel, then ran unchanged; one export step failed twice on the encoding of the £ and € symbols before it worked, and the transferred file was confirmed against an MD5 checksum computed in Mathematica.
 
 ## How the AI's explanation was checked against the code
 
