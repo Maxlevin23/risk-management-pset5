@@ -54,7 +54,7 @@ All nine tables appear side by side in `output/verification_report.html`.
 
 **Deliberate differences.** (a) Python's holdings table shows all positions; the notebook shows 9 (hard-coded `n = 9`), so the original holdings comparison covers those 9 rows. (b) With fewer than five risk factors the notebook's replicating-portfolio routine fails; Python stops at the number available. (c) The Student-t and mixture quantiles use our own root finder instead of `Quantile`/`FindRoot`; they agree with Mathematica to 15 significant figures.
 
-**Not done.** PDFs of the rerun scenario notebooks are not in `reference/`; the scenario evidence is the exported table values. Differences of order 1e-11 remain at full precision in bump-and-revalue results where operation order differs; they are far below display precision.
+**Rerun notebooks.** `reference/<scenario>/` holds each rerun notebook (`.nb`) and its PDF, produced from the same Mathematica code; all 538 numeric cells of the three scenarios' Python tables appear in those PDFs in the same order. Differences of order 1e-11 remain at full precision in bump-and-revalue results where operation order differs; they are far below display precision.
 
 ## 5. Testing approach
 

@@ -1,0 +1,1489 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     49883,       1480]
+NotebookOptionsPosition[     47563,       1447]
+NotebookOutlinePosition[     47877,       1461]
+CellTagsIndexPosition[     47834,       1458]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Tables_Ch10 \[LongDash] scenario2", "Title",ExpressionUUID->"11e82583-b392-4f8b-aea2-009ed2e5139e"],
+
+Cell["\<\
+Rerun of the Tables_Ch10.nb reports with SamplePort2.m, DistFn1.m and the \
+notebook's table functions. Market data file: SamplePort2_scenario2.m. \
+Kernel: 15.0.1 for Linux x86 (64-bit) (July 2, 2026).\
+\>", "Text",ExpressionUUID->"89a10952-97c6-4cd7-beb4-aec04e511075"],
+
+Cell["Changed inputs (inputs.m)", "Subsection",ExpressionUUID->"6f710106-e489-4a91-81e4-868c8c05f259"],
+
+Cell["\<\
+(* Scenario 2 - market-data change on the Scenario 1 portfolio.
+   Load SamplePort2_scenario2.m (in this folder) instead of SamplePort2.m.
+   Changed in marketDataValues: USDYld10yr .0253 -> .0353, GBPFX 1/1.4 -> \
+1/1.6 *)
+seclist = {\"10yr UST\",\"5yr Bond Opt\",\"10yr UST\",\"10yr Swap\",\"10yr \
+UKG\",\"FTE CDS\",\"CAC Index Futures\",\"FTE \
+Equity\",\"GBPCash\",\"EURCash\",\"5yr UST\"};
+holdings = {20,-20,30,-20,-25,55,7,5,-10,15,40};
+subportfolio = \
+{\"Government\",\"Government\",\"Swaps\",\"Swaps\",\"Government\",\"Credit\",\
+\"Equity\",\"Equity\",\"Credit\",\"Equity\",\"Government\"};
+settledate = {2009,1,27,0,0,0};\
+\>", "Program",ExpressionUUID->"d3d26c8e-f8a8-4d40-b512-cad019bf0e7a"],
+
+Cell["1. Holdings (all positions)", "Subsection",ExpressionUUID->"8d4880ef-2712-44e0-a071-97ec8bd155a8"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Security\"\>", "\<\"Amount (mn local)\"\>", "\<\"Curr\"\>", \
+"\<\"Subportfolio\"\>"},
+    {"\<\"10yr UST\"\>", "20", "\<\"$\"\>", "\<\"Government\"\>"},
+    {"\<\"5yr Bond Opt\"\>", 
+     RowBox[{"-", "20"}], "\<\"$\"\>", "\<\"Government\"\>"},
+    {"\<\"10yr UST\"\>", "30", "\<\"$\"\>", "\<\"Swaps\"\>"},
+    {"\<\"10yr Swap\"\>", 
+     RowBox[{"-", "20"}], "\<\"$\"\>", "\<\"Swaps\"\>"},
+    {"\<\"10yr UKG\"\>", 
+     RowBox[{"-", "25"}], "\<\"\[Sterling]\"\>", "\<\"Government\"\>"},
+    {"\<\"FTE CDS\"\>", "55", "\<\"\[Sterling]\"\>", "\<\"Credit\"\>"},
+    {"\<\"CAC Index Futures\"\>", "7", "\<\"\[Euro]\"\>", "\<\"Equity\"\>"},
+    {"\<\"FTE Equity\"\>", "5", "\<\"\[Euro]\"\>", "\<\"Equity\"\>"},
+    {"\<\"GBPCash\"\>", 
+     RowBox[{"-", "10"}], "\<\"\[Sterling]\"\>", "\<\"Credit\"\>"},
+    {"\<\"EURCash\"\>", "15", "\<\"\[Euro]\"\>", "\<\"Equity\"\>"},
+    {"\<\"5yr UST\"\>", "40", "\<\"$\"\>", "\<\"Government\"\>"}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"01dd89bf-e6f8-47be-b687-d9c3cf373e54"],
+
+Cell["2. Table 1 \[LongDash] displayRF[seclist, holdings, settledate]", \
+"Subsection",ExpressionUUID->"f2c258b9-9fb0-4cfe-9b2c-3edac043b415"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Security\"\>", "\<\"Notional\"\>", "\<\"Security Vol\"\>", \
+"\<\"RIsk Factor\"\>", "\<\"DV01\"\>", "\<\"DV01 units\"\>", "\<\"RF unit Vol\
+\"\>", "\<\"RF pos'n Vol\"\>"},
+    {
+     StyleBox["\<\"10yr UST\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"$20mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"118,800\"\>",
+        ShowStringCharacters->False],
+       118807.54087668036`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDYld10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"16,621\"\>",
+        ShowStringCharacters->False],
+       16621.088520384954`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.148\"\>",
+        ShowStringCharacters->False],
+       7.148000008,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"118,800\"\>",
+        ShowStringCharacters->False],
+       118807.54087668036`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"5yr Bond Opt\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"$-20mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"20,170\"\>",
+        ShowStringCharacters->False],
+       20169.56268115059,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDYld5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-3,029\"\>",
+        ShowStringCharacters->False],
+       -3029.358337755339,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.073\"\>",
+        ShowStringCharacters->False],
+       7.073478043,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"21,430\"\>",
+        ShowStringCharacters->False],
+       21428.09968649137,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"US5yrOptionVol\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-4,254\"\>",
+        ShowStringCharacters->False],
+       -4253.705464101258,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.040\"\>",
+        ShowStringCharacters->False],
+       2.040043844,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"8,678\"\>",
+        ShowStringCharacters->False],
+       8677.745646228934,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"10yr UST\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"$30mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"178,200\"\>",
+        ShowStringCharacters->False],
+       178211.31131501924`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDYld10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"24,932\"\>",
+        ShowStringCharacters->False],
+       24931.632780577245`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.148\"\>",
+        ShowStringCharacters->False],
+       7.148000008,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"178,200\"\>",
+        ShowStringCharacters->False],
+       178211.3113150192,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"10yr Swap\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"$-20mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"123,700\"\>",
+        ShowStringCharacters->False],
+       123703.9247116242,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDYld10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-15,710\"\>",
+        ShowStringCharacters->False],
+       -15710.350433285488`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.148\"\>",
+        ShowStringCharacters->False],
+       7.148000008,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"112,300\"\>",
+        ShowStringCharacters->False],
+       112297.58502280749`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDSwapSp10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-15,710\"\>",
+        ShowStringCharacters->False],
+       -15710.350433285488`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.235\"\>",
+        ShowStringCharacters->False],
+       2.235124477,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"35,110\"\>",
+        ShowStringCharacters->False],
+       35114.58879568395,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"10yr UKG\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Sterling]-25mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"457,900\"\>",
+        ShowStringCharacters->False],
+       457913.6770545168,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPYld10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-32,634\"\>",
+        ShowStringCharacters->False],
+       -32633.938180676105`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.570\"\>",
+        ShowStringCharacters->False],
+       6.569751878,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"214,400\"\>",
+        ShowStringCharacters->False],
+       214396.87664903275`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"-4\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"7\"\>"]}],
+        ShowStringCharacters->False],
+       -4.48341493433085*^7,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.00811\"\>",
+        ShowStringCharacters->False],
+       0.008110121,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"363,600\"\>",
+        ShowStringCharacters->False],
+       363610.3761063025,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"FTE CDS\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Sterling]55mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"74,900\"\>",
+        ShowStringCharacters->False],
+       74898.84856685353,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPYld5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-90\"\>",
+        ShowStringCharacters->False],
+       -90.47670209423814,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.916\"\>",
+        ShowStringCharacters->False],
+       6.916175288,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"626\"\>",
+        ShowStringCharacters->False],
+       625.7527311639076,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPCredSprd5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"38,689\"\>",
+        ShowStringCharacters->False],
+       38688.68190564672,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"1.926\"\>",
+        ShowStringCharacters->False],
+       1.925656495,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"74,500\"\>",
+        ShowStringCharacters->False],
+       74501.11159459758,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-349,010\"\>",
+        ShowStringCharacters->False],
+       -349011.9915699123,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.00811\"\>",
+        ShowStringCharacters->False],
+       0.008110121,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2,831\"\>",
+        ShowStringCharacters->False],
+       2830.5294820829686`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"CAC Index Futures\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Euro]7mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"230,800\"\>",
+        ShowStringCharacters->False],
+       230821.96410000074`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"9\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"6\"\>"]}],
+        ShowStringCharacters->False],
+       9.10000000000003*^6,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.02537\"\>",
+        ShowStringCharacters->False],
+       0.025365051,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"230,800\"\>",
+        ShowStringCharacters->False],
+       230821.96410000074`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"FTE Equity\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Euro]5mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"168,900\"\>",
+        ShowStringCharacters->False],
+       168865.42253178734`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"5\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"6\"\>"]}],
+        ShowStringCharacters->False],
+       4.5499617085861545`*^6,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.02537\"\>",
+        ShowStringCharacters->False],
+       0.025365051,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"115,400\"\>",
+        ShowStringCharacters->False],
+       115410.01078633494`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"FTEEqSpecific\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"7\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"6\"\>"]}],
+        ShowStringCharacters->False],
+       6.500000000000022*^6,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.02840\"\>",
+        ShowStringCharacters->False],
+       0.028395161,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"184,600\"\>",
+        ShowStringCharacters->False],
+       184568.54650000064`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"EURFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"6\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"6\"\>"]}],
+        ShowStringCharacters->False],
+       6.499999999999975*^6,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.00791\"\>",
+        ShowStringCharacters->False],
+       0.007908532,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"51,410\"\>",
+        ShowStringCharacters->False],
+       51405.457999999795`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"GBPCash\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Sterling]-10mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"129,800\"\>",
+        ShowStringCharacters->False],
+       129761.93599999936`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"-2\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"7\"\>"]}],
+        ShowStringCharacters->False],
+       -1.5999999999999924`*^7,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.00811\"\>",
+        ShowStringCharacters->False],
+       0.008110121,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"129,800\"\>",
+        ShowStringCharacters->False],
+       129761.93599999938`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"EURCash\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\[Euro]15mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"154,200\"\>",
+        ShowStringCharacters->False],
+       154216.373999999,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"EURFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"2\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"7\"\>"]}],
+        ShowStringCharacters->False],
+       1.9499999999999877`*^7,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"percent\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.00791\"\>",
+        ShowStringCharacters->False],
+       0.007908532,
+       AutoDelete->True],
+      NumberForm[#, {5, 5}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"154,200\"\>",
+        ShowStringCharacters->False],
+       154216.37399999902`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {
+     StyleBox["\<\"5yr UST\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"$40mn\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"136,200\"\>",
+        ShowStringCharacters->False],
+       136225.57693990052`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>"},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"USDYld5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"19,259\"\>",
+        ShowStringCharacters->False],
+       19258.641380064935`,
+       AutoDelete->True],
+      NumberForm[#, {5, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"level\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.073\"\>",
+        ShowStringCharacters->False],
+       7.073478043,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"136,200\"\>",
+        ShowStringCharacters->False],
+       136225.57693990052`,
+       AutoDelete->True],
+      NumberForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"a1058238-e076-4447-b120-fef52c7b904b"],
+
+Cell["3. Grid[xx[[1]]] \[LongDash] risk-category summary", "Subsection",ExpressionUUID->"ad8953f0-b7b8-4c5c-b88f-049dd3586957"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Exp Vol ($)\"\>", "\<\"Contribution\"\>", \
+"\<\"Correlation\"\>"},
+    {"\<\"Overall\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"546,300\"\>",
+        ShowStringCharacters->False],
+       546333.2647230868,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"100.0\"\>", "\<\"with portfolio\"\>"},
+    {"\<\"FI - rates\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"201,500\"\>",
+        ShowStringCharacters->False],
+       201456.12336469398`,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"15.7\"\>",
+        ShowStringCharacters->False],
+       15.659320194122856`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.425\"\>",
+        ShowStringCharacters->False],
+       0.4246685274247979,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"FI - swap spreads\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"35,110\"\>",
+        ShowStringCharacters->False],
+       35114.58879568394,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-0.9\"\>",
+        ShowStringCharacters->False],
+       -0.8590692051505021,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-0.134\"\>",
+        ShowStringCharacters->False],
+       -0.13365900031004466`,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Credit\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"74,500\"\>",
+        ShowStringCharacters->False],
+       74501.11159459758,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.5\"\>",
+        ShowStringCharacters->False],
+       6.483872648839085,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.475\"\>",
+        ShowStringCharacters->False],
+       0.4754768400725257,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Equity\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"296,400\"\>",
+        ShowStringCharacters->False],
+       296408.25413237175`,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"27.6\"\>",
+        ShowStringCharacters->False],
+       27.588736156452427`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.509\"\>",
+        ShowStringCharacters->False],
+       0.5085096006539443,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Commodity\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0\"\>",
+        ShowStringCharacters->False],
+       0.,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0\"\>",
+        ShowStringCharacters->False],
+       0,
+       Editable->False],
+      NumberForm[#, {4, 1}]& ], "\<\"\"\>"},
+    {"\<\"FX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"410,400\"\>",
+        ShowStringCharacters->False],
+       410430.20117525244`,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"50.8\"\>",
+        ShowStringCharacters->False],
+       50.77859394574944,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.676\"\>",
+        ShowStringCharacters->False],
+       0.6759257707885755,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Volatility\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"8,678\"\>",
+        ShowStringCharacters->False],
+       8677.745646228936,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.3\"\>",
+        ShowStringCharacters->False],
+       0.34854625998673006`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.219\"\>",
+        ShowStringCharacters->False],
+       0.2194376556869046,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"aa620910-fee3-4a76-8120-e33fe7b920e3"],
+
+Cell["4. Grid[xx[[2]]] \[LongDash] top three contributors", "Subsection",ExpressionUUID->"efa0b3ea-0a15-471c-8d7e-d0e6aaa511c2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Exp Vol\"\>", "\<\"\"\>", "\<\"Curr Pos'n\"\>", \
+"\<\"Trade to best\"\>", "\<\"% Reduction in Vol to\"\>", "\[SpanFromLeft]"},
+    {"\<\"\"\>", "\<\"(1-sig P&L)\"\>", "\<\"Contribution\"\>", "\<\"(mn eqv)\
+\"\>", "\<\"Hedge (eqv)\"\>", "\<\"Best Hedge\"\>", "\<\"Zero Pos'n\"\>"},
+    {"\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"496,200\"\>",
+        ShowStringCharacters->False],
+       496202.8415883848,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"53.6\"\>",
+        ShowStringCharacters->False],
+       53.60027464041758,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-38.2\"\>",
+        ShowStringCharacters->False],
+       -38.2394758342992,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"24.8\"\>",
+        ShowStringCharacters->False],
+       24.847101847702344`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"19.3\"\>",
+        ShowStringCharacters->False],
+       19.270936798375693`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"13.2\"\>",
+        ShowStringCharacters->False],
+       13.230297946416433`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"346,200\"\>",
+        ShowStringCharacters->False],
+       346231.97488633567`,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"26.3\"\>",
+        ShowStringCharacters->False],
+       26.293426531171903`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"10.5\"\>",
+        ShowStringCharacters->False],
+       10.49997054506626,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-6.9\"\>",
+        ShowStringCharacters->False],
+       -6.8741057679363005`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"9.0\"\>",
+        ShowStringCharacters->False],
+       9.0130465661304,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.4\"\>",
+        ShowStringCharacters->False],
+       6.418222149917428,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"USDYld10yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"184,700\"\>",
+        ShowStringCharacters->False],
+       184721.2671688921,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.7\"\>",
+        ShowStringCharacters->False],
+       7.7468064786180175`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"31.1\"\>",
+        ShowStringCharacters->False],
+       31.09588260237239,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-21.1\"\>",
+        ShowStringCharacters->False],
+       -21.072064426544703`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.7\"\>",
+        ShowStringCharacters->False],
+       2.66018715770866,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.1\"\>",
+        ShowStringCharacters->False],
+       2.0519068659187325`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"9c4fe2f7-a2bf-4f89-b8e2-25dc0614ff93"],
+
+Cell["5. Grid[xx[[3]]] \[LongDash] best single hedge", "Subsection",ExpressionUUID->"07728a9b-cb1e-4b1b-8fb1-ebcba6d87808"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Exp Vol\"\>", "\<\"\"\>", "\<\"Curr Pos'n\"\>", \
+"\<\"Trade to best\"\>", "\<\"% Reduction in Vol to\"\>", "\[SpanFromLeft]"},
+    {"\<\"\"\>", "\<\"(1-sig P&L)\"\>", "\<\"Contribution\"\>", "\<\"(mn eqv)\
+\"\>", "\<\"Hedge (eqv)\"\>", "\<\"Best Hedge\"\>", "\<\"Zero Pos'n\"\>"},
+    {"\<\"EURFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"205,600\"\>",
+        ShowStringCharacters->False],
+       205621.8319999988,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-2.8\"\>",
+        ShowStringCharacters->False],
+       -2.8216806946681383`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"20.0\"\>",
+        ShowStringCharacters->False],
+       19.999999999999996`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"4.0\"\>",
+        ShowStringCharacters->False],
+       3.983957554035437,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.3\"\>",
+        ShowStringCharacters->False],
+       0.28143242401139634`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-9.5\"\>",
+        ShowStringCharacters->False],
+       -9.457103942736683,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"3ab8a8c9-5b70-4401-ad95-068ae4cc19fb"],
+
+Cell["6. Grid[xx[[4]]] \[LongDash] top three best hedges", "Subsection",ExpressionUUID->"aea6ff6f-b02b-4821-8509-159d35e40193"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Exp Vol\"\>", "\<\"\"\>", "\<\"Curr Pos'n\"\>", \
+"\<\"Trade to best\"\>", "\<\"% Reduction in Vol to\"\>", "\[SpanFromLeft]"},
+    {"\<\"\"\>", "\<\"(1-sig P&L)\"\>", "\<\"Contribution\"\>", "\<\"(mn eqv)\
+\"\>", "\<\"Hedge (eqv)\"\>", "\<\"Best Hedge\"\>", "\<\"Zero Pos'n\"\>"},
+    {"\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"496,200\"\>",
+        ShowStringCharacters->False],
+       496202.8415883848,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"53.6\"\>",
+        ShowStringCharacters->False],
+       53.60027464041758,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-38.2\"\>",
+        ShowStringCharacters->False],
+       -38.2394758342992,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"24.8\"\>",
+        ShowStringCharacters->False],
+       24.847101847702344`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"19.3\"\>",
+        ShowStringCharacters->False],
+       19.270936798375693`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"13.2\"\>",
+        ShowStringCharacters->False],
+       13.230297946416433`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"GBPCredSprd5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"74,500\"\>",
+        ShowStringCharacters->False],
+       74501.11159459759,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.5\"\>",
+        ShowStringCharacters->False],
+       6.483872648839085,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"55.0\"\>",
+        ShowStringCharacters->False],
+       55.,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-191.8\"\>",
+        ShowStringCharacters->False],
+       -191.77277335514597`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"12.0\"\>",
+        ShowStringCharacters->False],
+       12.02717609655547,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.7\"\>",
+        ShowStringCharacters->False],
+       5.717544159926176,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"346,200\"\>",
+        ShowStringCharacters->False],
+       346231.97488633567`,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"26.3\"\>",
+        ShowStringCharacters->False],
+       26.293426531171903`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"10.5\"\>",
+        ShowStringCharacters->False],
+       10.49997054506626,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-6.9\"\>",
+        ShowStringCharacters->False],
+       -6.8741057679363005`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"9.0\"\>",
+        ShowStringCharacters->False],
+       9.0130465661304,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.4\"\>",
+        ShowStringCharacters->False],
+       6.418222149917428,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"4eacd1a7-61a7-45e6-af66-a3ad9d883b8d"],
+
+Cell["7. Grid[xx[[5]]] \[LongDash] best replicating portfolios", "Subsection",ExpressionUUID->"70a10793-d980-464d-80b1-28b74ff4345e"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"One Asset\"\>", 
+     "\[SpanFromLeft]", "\<\"Three Assets\"\>", 
+     "\[SpanFromLeft]", "\<\"Five Assets\"\>", "\[SpanFromLeft]"},
+    {"\<\"\"\>", "\<\"% Var\"\>", "\<\"% Vol\"\>", "\<\"% Var\"\>", "\<\"% \
+Vol\"\>", "\<\"% Var\"\>", "\<\"% Vol\"\>"},
+    {"\<\"%Var / %Vol Explained\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"34.8\"\>",
+        ShowStringCharacters->False],
+       34.82818354588149,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"19.3\"\>",
+        ShowStringCharacters->False],
+       19.270936798375693`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"80.2\"\>",
+        ShowStringCharacters->False],
+       80.227390444145,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"55.5\"\>",
+        ShowStringCharacters->False],
+       55.53359745172204,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"92.1\"\>",
+        ShowStringCharacters->False],
+       92.07984648497322,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"71.9\"\>",
+        ShowStringCharacters->False],
+       71.85723269643374,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"\"\>", "\<\"Asset\"\>", "\<\"Eqv Pos'n\"\>", "\<\"Asset\"\>", \
+"\<\"Eqv Pos'n\"\>", "\<\"Asset\"\>", "\<\"Eqv Pos'n\"\>"},
+    {"\<\"Asset / Eqv Pos'n\"\>", "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-24.8\"\>",
+        ShowStringCharacters->False],
+       -24.847101847702344`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-32.2\"\>",
+        ShowStringCharacters->False],
+       -32.15302327704081,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], "\<\"GBPFX\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"-41.6\"\>",
+        ShowStringCharacters->False],
+       -41.584805044282085`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"13.5\"\>",
+        ShowStringCharacters->False],
+       13.450914665553576`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], "\<\"CACEqIndex\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"11.8\"\>",
+        ShowStringCharacters->False],
+       11.773373958996352`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"FTEEqSpecific\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.7\"\>",
+        ShowStringCharacters->False],
+       5.695488891187898,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], "\<\"FTEEqSpecific\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.8\"\>",
+        ShowStringCharacters->False],
+       5.841773449646524,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"EURFX\"\
+\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"20.1\"\>",
+        ShowStringCharacters->False],
+       20.117480494044123`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]},
+    {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", "\<\"\"\>", \
+"\<\"USDYld5yr\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"37.6\"\>",
+        ShowStringCharacters->False],
+       37.644753542827225`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"7100f110-65b6-40bf-8a54-14c2a1c11205"],
+
+Cell["8. Grid[yy] \[LongDash] volatility by subportfolio", "Subsection",ExpressionUUID->"a9850741-66bf-4615-bf49-251bd96b545f"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Exp Vol ($)\"\>", "\<\"Contribution\"\>", \
+"\<\"Correlation\"\>"},
+    {"\<\"Overall\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"546,300\"\>",
+        ShowStringCharacters->False],
+       546333.2647230868,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> 
+       ""]& ], "\<\"100.0\"\>", "\<\"with portfolio\"\>"},
+    {"\<\"Credit\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"157,100\"\>",
+        ShowStringCharacters->False],
+       157122.7439843089,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"20.8\"\>",
+        ShowStringCharacters->False],
+       20.824704513159702`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.724\"\>",
+        ShowStringCharacters->False],
+       0.7240981486871391,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Equity\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"397,200\"\>",
+        ShowStringCharacters->False],
+       397179.5978640203,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"24.8\"\>",
+        ShowStringCharacters->False],
+       24.767055461784288`,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.341\"\>",
+        ShowStringCharacters->False],
+       0.3406787846299927,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Government\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"416,400\"\>",
+        ShowStringCharacters->False],
+       416389.8338075286,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"52.5\"\>",
+        ShowStringCharacters->False],
+       52.50303151764896,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.689\"\>",
+        ShowStringCharacters->False],
+       0.6888773521342789,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]},
+    {"\<\"Swaps\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"68,710\"\>",
+        ShowStringCharacters->False],
+       68712.12446790973,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"1.9\"\>",
+        ShowStringCharacters->False],
+       1.905208507407067,
+       AutoDelete->True],
+      NumberForm[#, {4, 1}]& ], 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.151\"\>",
+        ShowStringCharacters->False],
+       0.1514840054634053,
+       AutoDelete->True],
+      NumberForm[#, {4, 3}]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"23b48478-a8f5-44fe-902d-dfacd79d66dc"],
+
+Cell["9. Grid[varsumm[...]] \[LongDash] VaR summary", "Subsection",ExpressionUUID->"94548351-e555-4c9f-b931-c96d93a12c24"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"VOLATILITY and 1-ot-of 255 VaR\"\>", "\[SpanFromLeft]"},
+    {"\<\"Volatility\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"546,300\"\>",
+        ShowStringCharacters->False],
+       546333.2647230868,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"VaR Normal\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"(1,453,000)\"\>",
+        ShowStringCharacters->False],
+       -1.4525630158302009`*^6,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"VaR Student-t (6df)\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"(1,747,000)\"\>",
+        ShowStringCharacters->False],
+       -1.7465934321755697`*^6,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"VaR Normal Mix (\[Alpha]=1% \[Beta]=5)\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"(1,488,000)\"\>",
+        ShowStringCharacters->False],
+       -1.4878003166230277`*^6,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]},
+    {"\<\"VaR 4-sigma rule-of-thumb\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"(2,185,000)\"\>",
+        ShowStringCharacters->False],
+       -2.1853330588923474`*^6,
+       AutoDelete->True],
+      AccountingForm[#, {4, 0}, DigitBlock -> 3, NumberPoint -> ""]& ]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",ExpressionUUID->"5d649186-9581-4789-b592-de694aed62d2"]
+},
+FrontEndVersion->"15.0 for Linux x86 (64-bit) (July 2, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"90d574dd-7fbb-4d93-8ab7-cd5b299f2f1c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 105, 0, 70, "Title",ExpressionUUID->"11e82583-b392-4f8b-aea2-009ed2e5139e"],
+Cell[662, 22, 281, 4, 70, "Text",ExpressionUUID->"89a10952-97c6-4cd7-beb4-aec04e511075"],
+Cell[946, 28, 102, 0, 70, "Subsection",ExpressionUUID->"6f710106-e489-4a91-81e4-868c8c05f259"],
+Cell[1051, 30, 715, 13, 70, "Program",ExpressionUUID->"d3d26c8e-f8a8-4d40-b512-cad019bf0e7a"],
+Cell[1769, 45, 104, 0, 70, "Subsection",ExpressionUUID->"8d4880ef-2712-44e0-a071-97ec8bd155a8"],
+Cell[1876, 47, 1219, 23, 70, "Output",ExpressionUUID->"01dd89bf-e6f8-47be-b687-d9c3cf373e54"],
+Cell[3098, 72, 142, 1, 70, "Subsection",ExpressionUUID->"f2c258b9-9fb0-4cfe-9b2c-3edac043b415"],
+Cell[3243, 75, 18931, 569, 70, "Output",ExpressionUUID->"a1058238-e076-4447-b120-fef52c7b904b"],
+Cell[22177, 646, 127, 0, 70, "Subsection",ExpressionUUID->"ad8953f0-b7b8-4c5c-b88f-049dd3586957"],
+Cell[22307, 648, 5018, 164, 70, "Output",ExpressionUUID->"aa620910-fee3-4a76-8120-e33fe7b920e3"],
+Cell[27328, 814, 128, 0, 70, "Subsection",ExpressionUUID->"efa0b3ea-0a15-471c-8d7e-d0e6aaa511c2"],
+Cell[27459, 816, 4273, 139, 70, "Output",ExpressionUUID->"9c4fe2f7-a2bf-4f89-b8e2-25dc0614ff93"],
+Cell[31735, 957, 123, 0, 70, "Subsection",ExpressionUUID->"07728a9b-cb1e-4b1b-8fb1-ebcba6d87808"],
+Cell[31861, 959, 1808, 53, 70, "Output",ExpressionUUID->"3ab8a8c9-5b70-4401-ad95-068ae4cc19fb"],
+Cell[33672, 1014, 127, 0, 70, "Subsection",ExpressionUUID->"aea6ff6f-b02b-4821-8509-159d35e40193"],
+Cell[33802, 1016, 4261, 139, 70, "Output",ExpressionUUID->"4eacd1a7-61a7-45e6-af66-a3ad9d883b8d"],
+Cell[38066, 1157, 133, 0, 70, "Subsection",ExpressionUUID->"70a10793-d980-464d-80b1-28b74ff4345e"],
+Cell[38202, 1159, 4072, 126, 70, "Output",ExpressionUUID->"7100f110-65b6-40bf-8a54-14c2a1c11205"],
+Cell[42277, 1287, 127, 0, 70, "Subsection",ExpressionUUID->"a9850741-66bf-4615-bf49-251bd96b545f"],
+Cell[42407, 1289, 3272, 105, 70, "Output",ExpressionUUID->"23b48478-a8f5-44fe-902d-dfacd79d66dc"],
+Cell[45682, 1396, 122, 0, 70, "Subsection",ExpressionUUID->"94548351-e555-4c9f-b931-c96d93a12c24"],
+Cell[45807, 1398, 1752, 47, 70, "Output",ExpressionUUID->"5d649186-9581-4789-b592-de694aed62d2"]
+}
+]
+*)
+
+(* End of internal cache information *)

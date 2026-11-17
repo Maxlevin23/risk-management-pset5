@@ -17,7 +17,7 @@ SECTIONS = [
     ("Mathematica: scenario inputs and export script",
      ["reference/original/inputs.m", "reference/scenario1/inputs.m",
       "reference/scenario2/inputs.m", "reference/scenario3/inputs.m",
-      "mathematica/RunScenarios.wl"]),
+      "mathematica/RunScenarios.wl", "mathematica/MakeScenarioNotebooks.wl"]),
     ("Mathematica: table functions extracted from Tables_Ch10.nb",
      ["mathematica/TableFunctions.wl"]),
     ("Configuration", ["requirements.txt"]),

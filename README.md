@@ -124,11 +124,12 @@ one digit. Python first showed `7×10^6` for both. Mathematica evaluates
 `holding*1000000*x/fx` as (exact integer product) × (x × fx⁻¹); `eqtypv` and
 `eqtyFutpv` now use that order and reproduce Mathematica's values to the last bit.
 
-## Not included
+## Rerun scenario notebooks
 
-PDFs of the rerun scenario notebooks. To add them, apply
-`reference/<scenario>/inputs.m` to a copy of `Tables_Ch10.nb` (scenario 2 also
-loads `SamplePort2_scenario2.m`), evaluate, and save the PDF into
-`reference/<scenario>/`.
+Each `reference/<scenario>/` folder holds `Tables_Ch10_<scenario>.nb` and
+`Tables_Ch10_<scenario>.pdf`: the scenario's changed inputs and the nine tables
+as drawn by the original Mathematica code (built by
+`mathematica/MakeScenarioNotebooks.wl` in Mathematica 15.0.1, Wolfram Cloud).
+Every number in the Python tables appears, in the same order, in these PDFs.
 
 The checkpoint is on the branch `bionic/checkpoint`; later work is on `main`.
