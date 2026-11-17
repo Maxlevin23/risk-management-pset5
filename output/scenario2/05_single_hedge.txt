@@ -1,0 +1,3 @@
+      | Exp Vol     |              | Curr Pos'n | Trade to best | % Reduction in Vol to |
+      | (1-sig P&L) | Contribution | (mn eqv)   | Hedge (eqv)   | Best Hedge            | Zero Pos'n
+EURFX | 205,600     | -2.8         | 20.0       | 4.0           | 0.3                   | -9.5

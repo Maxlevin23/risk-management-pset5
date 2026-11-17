@@ -1,0 +1,5 @@
+               | Exp Vol     |              | Curr Pos'n | Trade to best | % Reduction in Vol to |
+               | (1-sig P&L) | Contribution | (mn eqv)   | Hedge (eqv)   | Best Hedge            | Zero Pos'n
+GBPFX          | 496,200     | 53.6         | -38.2      | 24.8          | 19.3                  | 13.2
+GBPCredSprd5yr | 74,500      | 6.5          | 55.0       | -191.8        | 12.0                  | 5.7
+CACEqIndex     | 346,200     | 26.3         | 10.5       | -6.9          | 9.0                   | 6.4

@@ -1,0 +1,9 @@
+                      | One Asset |           | Three Assets  |           | Five Assets   |
+                      | % Var     | % Vol     | % Var         | % Vol     | % Var         | % Vol
+%Var / %Vol Explained | 39.0      | 21.9      | 83.4          | 59.2      | 87.9          | 65.3
+                      | Asset     | Eqv Pos'n | Asset         | Eqv Pos'n | Asset         | Eqv Pos'n
+Asset / Eqv Pos'n     | GBPFX     | 21.5      | GBPFX         | 24.2      | GBPFX         | 21.4
+                      |           |           | FTEEqSpecific | 4.9       | FTEEqSpecific | 5.8
+                      |           |           | USDYld10yr    | -27.0     | USDYld10yr    | -36.7
+                      |           |           |               |           | EURYld5yr     | 23.7
+                      |           |           |               |           | CACEqIndex    | 2.0

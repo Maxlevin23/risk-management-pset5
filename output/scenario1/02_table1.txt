@@ -1,0 +1,30 @@
+Security          | Notional | Security Vol | RIsk Factor    | DV01     | DV01 units | RF unit Vol | RF pos'n Vol
+10yr UST          | $20mn    | 130,800      |                |          |            |             |
+                  |          |              | USDYld10yr     | 18,292   | level      | 7.148       | 130,800
+5yr Bond Opt      | $-20mn   | 20,170       |                |          |            |             |
+                  |          |              | USDYld5yr      | -3,029   | level      | 7.073       | 21,430
+                  |          |              | US5yrOptionVol | -4,254   | level      | 2.040       | 8,678
+10yr UST          | $30mn    | 196,100      |                |          |            |             |
+                  |          |              | USDYld10yr     | 27,438   | level      | 7.148       | 196,100
+10yr Swap         | $-20mn   | 136,500      |                |          |            |             |
+                  |          |              | USDYld10yr     | -17,339  | level      | 7.148       | 123,900
+                  |          |              | USDSwapSp10yr  | -17,339  | level      | 2.235       | 38,760
+10yr UKG          | £-25mn   | 400,700      |                |          |            |             |
+                  |          |              | GBPYld10yr     | -28,555  | level      | 6.570       | 187,600
+                  |          |              | GBPFX          | -4×10^7  | percent    | 0.00811     | 318,200
+FTE CDS           | £55mn    | 65,540       |                |          |            |             |
+                  |          |              | GBPYld5yr      | -79      | level      | 6.916       | 548
+                  |          |              | GBPCredSprd5yr | 33,853   | level      | 1.926       | 65,190
+                  |          |              | GBPFX          | -305,390 | percent    | 0.00811     | 2,477
+CAC Index Futures | €7mn     | 230,800      |                |          |            |             |
+                  |          |              | CACEqIndex     | 9×10^6   | percent    | 0.02537     | 230,800
+FTE Equity        | €5mn     | 168,900      |                |          |            |             |
+                  |          |              | CACEqIndex     | 5×10^6   | percent    | 0.02537     | 115,400
+                  |          |              | FTEEqSpecific  | 7×10^6   | percent    | 0.02840     | 184,600
+                  |          |              | EURFX          | 7×10^6   | percent    | 0.00791     | 51,410
+GBPCash           | £-10mn   | 113,500      |                |          |            |             |
+                  |          |              | GBPFX          | -1×10^7  | percent    | 0.00811     | 113,500
+EURCash           | €15mn    | 154,200      |                |          |            |             |
+                  |          |              | EURFX          | 2×10^7   | percent    | 0.00791     | 154,200
+5yr UST           | $40mn    | 136,200      |                |          |            |             |
+                  |          |              | USDYld5yr      | 19,259   | level      | 7.073       | 136,200

@@ -1,0 +1,14 @@
+Security          | Amount (mn local) | Curr | Subportfolio
+5yr UST           | 35                | $    | Rates
+10yr UST          | -12.5             | $    | Rates
+10yr UST          | 12.5              | $    | Macro
+Swap201901        | -40               | $    | Macro
+5yr UKG           | 18                | £    | Rates
+10yr Bund         | -22               | €    | Macro
+5yr Bund          | 30                | €    | Rates
+SPX Index Futures | -9                | $    | Equity
+FTE Equity        | 6                 | €    | Equity
+FTE CDS           | 25                | £    | Credit
+EURCash           | -8                | €    | Macro
+GBPCash           | 0                 | £    | Credit
+5yr Bond Opt      | 10                | $    | Rates

@@ -1,0 +1,5 @@
+           | Exp Vol     |              | Curr Pos'n | Trade to best | % Reduction in Vol to |
+           | (1-sig P&L) | Contribution | (mn eqv)   | Hedge (eqv)   | Best Hedge            | Zero Pos'n
+GBPFX      | 434,200     | 41.9         | -38.2      | 22.3          | 13.0                  | 6.1
+CACEqIndex | 346,200     | 33.0         | 10.5       | -7.6          | 12.7                  | 10.7
+USDYld10yr | 202,900     | 13.0         | 31.0       | -25.7         | 5.5                   | 5.3

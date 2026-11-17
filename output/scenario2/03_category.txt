@@ -1,0 +1,9 @@
+                  | Exp Vol ($) | Contribution | Correlation
+Overall           | 546,300     | 100.0        | with portfolio
+FI - rates        | 201,500     | 15.7         | 0.425
+FI - swap spreads | 35,110      | -0.9         | -0.134
+Credit            | 74,500      | 6.5          | 0.475
+Equity            | 296,400     | 27.6         | 0.509
+Commodity         | 0           | 0            |
+FX                | 410,400     | 50.8         | 0.676
+Volatility        | 8,678       | 0.3          | 0.219

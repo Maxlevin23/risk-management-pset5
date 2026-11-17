@@ -1,0 +1,140 @@
+# Tables_Ch10 in Python: original
+
+## 1. Holdings table
+
+Notebook source: `Out[38]`
+
+| Security | Amount (mn local) | Curr | Subportfolio |
+| --- | --- | --- | --- |
+| 10yr UST | 20 | $ | Government |
+| 5yr Bond Opt | -20 | $ | Government |
+| 10yr UST | 30 | $ | Swaps |
+| 10yr Swap | -20 | $ | Swaps |
+| 10yr UKG | 25 | £ | Government |
+| FTE CDS | 55 | £ | Credit |
+| CAC Index Futures | 7 | € | Equity |
+| FTE Equity | 5 | € | Equity |
+| GBPCash | -10 | £ | Government |
+| EURCash | 0 | € | Equity |
+| 5yr UST | 0 | $ | Government |
+
+## 2. Table 1: Securities, risk factors, DV01s
+
+Notebook source: `displayRF`
+
+| Security | Notional | Security Vol | RIsk Factor | DV01 | DV01 units | RF unit Vol | RF pos'n Vol |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 10yr UST | $20mn | 130,800 |  |  |  |  |  |
+|  |  |  | USDYld10yr | 18,292 | level | 7.148 | 130,800 |
+| 5yr Bond Opt | $-20mn | 20,170 |  |  |  |  |  |
+|  |  |  | USDYld5yr | -3,029 | level | 7.073 | 21,430 |
+|  |  |  | US5yrOptionVol | -4,254 | level | 2.040 | 8,678 |
+| 10yr UST | $30mn | 196,100 |  |  |  |  |  |
+|  |  |  | USDYld10yr | 27,438 | level | 7.148 | 196,100 |
+| 10yr Swap | $-20mn | 136,500 |  |  |  |  |  |
+|  |  |  | USDYld10yr | -17,339 | level | 7.148 | 123,900 |
+|  |  |  | USDSwapSp10yr | -17,339 | level | 2.235 | 38,760 |
+| 10yr UKG | £25mn | 400,700 |  |  |  |  |  |
+|  |  |  | GBPYld10yr | 28,555 | level | 6.570 | 187,600 |
+|  |  |  | GBPFX | 4×10^7 | percent | 0.00811 | 318,200 |
+| FTE CDS | £55mn | 65,540 |  |  |  |  |  |
+|  |  |  | GBPYld5yr | -79 | level | 6.916 | 548 |
+|  |  |  | GBPCredSprd5yr | 33,853 | level | 1.926 | 65,190 |
+|  |  |  | GBPFX | -305,390 | percent | 0.00811 | 2,477 |
+| CAC Index Futures | €7mn | 230,800 |  |  |  |  |  |
+|  |  |  | CACEqIndex | 9×10^6 | percent | 0.02537 | 230,800 |
+| FTE Equity | €5mn | 168,900 |  |  |  |  |  |
+|  |  |  | CACEqIndex | 5×10^6 | percent | 0.02537 | 115,400 |
+|  |  |  | FTEEqSpecific | 7×10^6 | percent | 0.02840 | 184,600 |
+|  |  |  | EURFX | 7×10^6 | percent | 0.00791 | 51,410 |
+| GBPCash | £-10mn | 113,500 |  |  |  |  |  |
+|  |  |  | GBPFX | -1×10^7 | percent | 0.00811 | 113,500 |
+| EURCash | €0mn | 0 |  |  |  |  |  |
+|  |  |  | EURFX | 0 | percent | 0.00791 | 0 |
+| 5yr UST | $0mn | 0 |  |  |  |  |  |
+|  |  |  | USDYld5yr | 0 | level | 7.073 | 0 |
+
+## 3. Risk-category summary
+
+Notebook source: `reportFunction1[[1]]`
+
+|  | Exp Vol ($) | Contribution | Correlation |
+| --- | --- | --- | --- |
+| Overall | 616,900 | 100.0 | with portfolio |
+| FI - rates | 345,800 | 39.2 | 0.700 |
+| FI - swap spreads | 38,760 | -0.4 | -0.071 |
+| Credit | 65,190 | 2.8 | 0.265 |
+| Equity | 296,400 | 35.8 | 0.746 |
+| Commodity | 0 | 0 |  |
+| FX | 236,100 | 21.8 | 0.571 |
+| Volatility | 8,678 | 0.7 | 0.510 |
+
+## 4. Top three contributors
+
+Notebook source: `reportFunction1[[2]]`
+
+|  | Exp Vol |  | Curr Pos'n | Trade to best | % Reduction in Vol to |  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | (1-sig P&L) | Contribution | (mn eqv) | Hedge (eqv) | Best Hedge | Zero Pos'n |
+| CACEqIndex | 346,200 | 37.1 | 10.5 | -12.4 | 25.0 | 24.4 |
+| GBPYld10yr | 187,600 | 20.8 | 25.0 | -56.2 | 27.1 | 17.8 |
+| USDYld10yr | 202,900 | 20.6 | 31.0 | -59.0 | 21.9 | 16.5 |
+
+## 5. Best single hedge
+
+Notebook source: `reportFunction1[[3]]`
+
+|  | Exp Vol |  | Curr Pos'n | Trade to best | % Reduction in Vol to |  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | (1-sig P&L) | Contribution | (mn eqv) | Hedge (eqv) | Best Hedge | Zero Pos'n |
+| USDYld5yr | 21,430 | -2.1 | -6.3 | -107.1 | 19.3 | -2.1 |
+
+## 6. Top three best hedges
+
+Notebook source: `reportFunction1[[4]]`
+
+|  | Exp Vol |  | Curr Pos'n | Trade to best | % Reduction in Vol to |  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | (1-sig P&L) | Contribution | (mn eqv) | Hedge (eqv) | Best Hedge | Zero Pos'n |
+| GBPYld10yr | 187,600 | 20.8 | 25.0 | -56.2 | 27.1 | 17.8 |
+| CACEqIndex | 346,200 | 37.1 | 10.5 | -12.4 | 25.0 | 24.4 |
+| GBPYld5yr | 548 | -0.1 | -0.1 | -74.7 | 22.6 | -0.1 |
+
+## 7. Best replicating portfolios
+
+Notebook source: `reportFunction1[[5]]`
+
+|  | One Asset |  | Three Assets |  | Five Assets |  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  | % Var | % Vol | % Var | % Vol | % Var | % Vol |
+| %Var / %Vol Explained | 46.8 | 27.1 | 86.7 | 63.6 | 98.4 | 87.5 |
+|  | Asset | Eqv Pos'n | Asset | Eqv Pos'n | Asset | Eqv Pos'n |
+| Asset / Eqv Pos'n | GBPYld10yr | 56.2 | GBPYld10yr | 43.2 | GBPYld10yr | 26.1 |
+|  |  |  | CACEqIndex | 8.9 | CACEqIndex | 11.9 |
+|  |  |  | GBPFX | 18.6 | GBPFX | 19.4 |
+|  |  |  |  |  | FTEEqSpecific | 6.1 |
+|  |  |  |  |  | USDYld10yr | 24.1 |
+
+## 8. Volatility by subportfolio
+
+Notebook source: `volbySubPortfolio`
+
+|  | Exp Vol ($) | Contribution | Correlation |
+| --- | --- | --- | --- |
+| Overall | 616,900 | 100.0 | with portfolio |
+| Credit | 65,540 | 2.5 | 0.237 |
+| Equity | 312,100 | 39.0 | 0.771 |
+| Government | 376,000 | 51.6 | 0.847 |
+| Swaps | 75,350 | 6.9 | 0.562 |
+
+## 9. VaR summary
+
+Notebook source: `varsumm`
+
+| VOLATILITY and 1-ot-of 255 VaR |  |
+| --- | --- |
+| Volatility | 616,900 |
+| VaR Normal | (1,640,000) |
+| VaR Student-t (6df) | (1,972,000) |
+| VaR Normal Mix (α=1% β=5) | (1,680,000) |
+| VaR 4-sigma rule-of-thumb | (2,468,000) |

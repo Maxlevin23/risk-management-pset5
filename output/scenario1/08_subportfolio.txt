@@ -1,0 +1,6 @@
+           | Exp Vol ($) | Contribution | Correlation
+Overall    | 512,100     | 100.0        | with portfolio
+Credit     | 137,500     | 17.2         | 0.642
+Equity     | 397,200     | 33.1         | 0.427
+Government | 370,100     | 46.1         | 0.638
+Swaps      | 75,350      | 3.5          | 0.240

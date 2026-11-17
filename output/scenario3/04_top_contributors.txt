@@ -1,0 +1,5 @@
+              | Exp Vol     |              | Curr Pos'n | Trade to best | % Reduction in Vol to |
+              | (1-sig P&L) | Contribution | (mn eqv)   | Hedge (eqv)   | Best Hedge            | Zero Pos'n
+GBPFX         | 224,300     | 35.9         | 19.8       | -21.5         | 21.9                  | 21.8
+USDYld10yr    | 236,800     | 26.4         | -37.7      | 27.1          | 10.0                  | 8.4
+FTEEqSpecific | 221,500     | 25.3         | 6.0        | -4.7          | 10.5                  | 9.7

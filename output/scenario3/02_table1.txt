@@ -1,0 +1,36 @@
+Security          | Notional | Security Vol | RIsk Factor    | DV01     | DV01 units | RF unit Vol | RF pos'n Vol
+5yr UST           | $35mn    | 108,700      |                |          |            |             |
+                  |          |              | USDYld5yr      | 15,362   | level      | 7.073       | 108,700
+10yr UST          | $-12.5mn | 78,410       |                |          |            |             |
+                  |          |              | USDYld10yr     | -10,970  | level      | 7.148       | 78,410
+10yr UST          | $12.5mn  | 78,410       |                |          |            |             |
+                  |          |              | USDYld10yr     | 10,970   | level      | 7.148       | 78,410
+Swap201901        | $-40mn   | 260,800      |                |          |            |             |
+                  |          |              | USDYld10yr     | -33,126  | level      | 7.148       | 236,800
+                  |          |              | USDSwapSp10yr  | -33,126  | level      | 2.235       | 74,040
+5yr UKG           | £18mn    | 265,200      |                |          |            |             |
+                  |          |              | GBPYld5yr      | 12,640   | level      | 6.916       | 87,420
+                  |          |              | GBPFX          | 3×10^7   | percent    | 0.00811     | 225,500
+10yr Bund         | €-22mn   | 307,100      |                |          |            |             |
+                  |          |              | EURYld10yr     | -25,629  | level      | 5.735       | 147,000
+                  |          |              | EURFX          | -3×10^7  | percent    | 0.00791     | 245,300
+5yr Bund          | €30mn    | 375,300      |                |          |            |             |
+                  |          |              | EURYld5yr      | 16,564   | level      | 6.142       | 101,700
+                  |          |              | EURFX          | 4×10^7   | percent    | 0.00791     | 333,600
+SPX Index Futures | $-9mn    | 139,100      |                |          |            |             |
+                  |          |              | SPXEqIndex     | -9×10^6  | percent    | 0.01546     | 139,100
+FTE Equity        | €6mn     | 202,600      |                |          |            |             |
+                  |          |              | CACEqIndex     | 5×10^6   | percent    | 0.02537     | 138,500
+                  |          |              | FTEEqSpecific  | 8×10^6   | percent    | 0.02840     | 221,500
+                  |          |              | EURFX          | 8×10^6   | percent    | 0.00791     | 61,690
+FTE CDS           | £25mn    | 29,790       |                |          |            |             |
+                  |          |              | GBPYld5yr      | -36      | level      | 6.916       | 249
+                  |          |              | GBPCredSprd5yr | 15,388   | level      | 1.926       | 29,630
+                  |          |              | GBPFX          | -138,810 | percent    | 0.00811     | 1,126
+EURCash           | €-8mn    | 82,250       |                |          |            |             |
+                  |          |              | EURFX          | -1×10^7  | percent    | 0.00791     | 82,250
+GBPCash           | £0mn     | 0            |                |          |            |             |
+                  |          |              | GBPFX          | 0        | percent    | 0.00811     | 0
+5yr Bond Opt      | $10mn    | 10,080       |                |          |            |             |
+                  |          |              | USDYld5yr      | 1,515    | level      | 7.073       | 10,710
+                  |          |              | US5yrOptionVol | 2,127    | level      | 2.040       | 4,339

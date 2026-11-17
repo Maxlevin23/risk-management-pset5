@@ -1,0 +1,12 @@
+Position,Security,Amount (mn local),Curr,Subportfolio
+1,10yr UST,20,$,Government
+2,5yr Bond Opt,-20,$,Government
+3,10yr UST,30,$,Swaps
+4,10yr Swap,-20,$,Swaps
+5,10yr UKG,25,£,Government
+6,FTE CDS,55,£,Credit
+7,CAC Index Futures,7,€,Equity
+8,FTE Equity,5,€,Equity
+9,GBPCash,-10,£,Government
+10,EURCash,0,€,Equity
+11,5yr UST,0,$,Government

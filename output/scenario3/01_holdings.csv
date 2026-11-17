@@ -1,0 +1,14 @@
+Position,Security,Amount (mn local),Curr,Subportfolio
+1,5yr UST,35,$,Rates
+2,10yr UST,-12.5,$,Rates
+3,10yr UST,12.5,$,Macro
+4,Swap201901,-40,$,Macro
+5,5yr UKG,18,£,Rates
+6,10yr Bund,-22,€,Macro
+7,5yr Bund,30,€,Rates
+8,SPX Index Futures,-9,$,Equity
+9,FTE Equity,6,€,Equity
+10,FTE CDS,25,£,Credit
+11,EURCash,-8,€,Macro
+12,GBPCash,0,£,Credit
+13,5yr Bond Opt,10,$,Rates

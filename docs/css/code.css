@@ -1,0 +1,10 @@
+@page { size: Letter; margin: 13mm 12mm; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 9pt; color: #111; max-width: none; margin: 0; padding: 0; }
+h1.title { font-size: 16pt; margin: 0 0 2px; }
+p.subtitle { color: #444; margin: 0 0 8px; }
+h1 { font-size: 13pt; margin-top: 14px; border-bottom: 2px solid #333; }
+h2 { font-size: 10.5pt; margin: 12px 0 3px; font-family: Menlo, monospace; background: #e8e8e8; padding: 3px 6px; break-after: avoid; }
+pre { font-family: Menlo, monospace; font-size: 6.9pt; line-height: 1.25; white-space: pre-wrap; word-break: break-word; margin: 0 0 6px; padding: 5px 6px; border: 1px solid #ccc; }
+code { font-family: Menlo, monospace; }
+table { border-collapse: collapse; font-size: 8pt; } th, td { border: 1px solid #999; padding: 2px 5px; text-align: left; }
+code span.co, code span.do, code span.an, code span.cv, code span.in { color: #4a4a4a !important; font-style: normal; }

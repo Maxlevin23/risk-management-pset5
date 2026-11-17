@@ -1,0 +1,12 @@
+Security          | Amount (mn local) | Curr | Subportfolio
+10yr UST          | 20                | $    | Government
+5yr Bond Opt      | -20               | $    | Government
+10yr UST          | 30                | $    | Swaps
+10yr Swap         | -20               | $    | Swaps
+10yr UKG          | 25                | £    | Government
+FTE CDS           | 55                | £    | Credit
+CAC Index Futures | 7                 | €    | Equity
+FTE Equity        | 5                 | €    | Equity
+GBPCash           | -10               | £    | Government
+EURCash           | 0                 | €    | Equity
+5yr UST           | 0                 | $    | Government

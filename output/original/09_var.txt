@@ -1,0 +1,6 @@
+VOLATILITY and 1-ot-of 255 VaR |
+Volatility                     | 616,900
+VaR Normal                     | (1,640,000)
+VaR Student-t (6df)            | (1,972,000)
+VaR Normal Mix (α=1% β=5)      | (1,680,000)
+VaR 4-sigma rule-of-thumb      | (2,468,000)

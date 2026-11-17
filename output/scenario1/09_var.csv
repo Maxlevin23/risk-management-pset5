@@ -1,0 +1,6 @@
+Measure,Value
+Volatility,512066.4982
+VaR Normal,-1361456.285
+VaR Student-t (6df),-1637044.713
+VaR Normal Mix (α=1% β=5),-1394483.454
+VaR 4-sigma rule-of-thumb,-2048265.993
