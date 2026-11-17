@@ -1,5 +1,5 @@
 ---
-title: "Problem 5: AI Appendix and Contribution Statement"
+title: "Problem 5: AI Appendix"
 subtitle: "PPHA 42525 Risk Management, Autumn 2026 (not counted in the 2-page report)"
 geometry: "margin=1.8cm"
 fontsize: 10pt
@@ -46,7 +46,3 @@ Two shorter prompts in between asked the AI to commit and to push.
 ## How the AI's explanation was checked against the code
 
 The Part I claims were checked against the source lines, not taken on trust: `n = 9` and `i < Length[seclist]` in the display cell; `Pick[marketDataValues, ...]` inside `eqtyFutpv`; `alpha = 0.01; beta = 5` inside `varsumm`; `Sign[riskFactorBumpUnit]` in `populateVCV`. Hand calculations confirmed the numbers: CAC exposure (7 + 0.7 × 5) × 1.3 = EUR 10.5mn equivalent, 13.65mn × 0.025365 = 346,200; normal VaR 616,900 × (−2.658) = −1,640,000.
-
-## Contribution statement
-
-Max Levin worked alone on this problem set. The code, tests and written documents were produced with Claude Code under his direction, as described in this appendix.
