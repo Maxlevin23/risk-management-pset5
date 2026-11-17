@@ -132,6 +132,5 @@ displayed digit). The neighbouring FTEEqSpecific DV01, also 6,500,000, shows
 2. For each scenario, apply `reference/<scenario>/inputs.m` to a copy of
    `Tables_Ch10.nb` (scenario 2 also loads `SamplePort2_scenario2.m`), evaluate,
    and save the notebook PDF into `reference/<scenario>/`.
-3. Fill in the contribution statement in `docs/AI_Appendix.md`.
 
 The checkpoint is on the branch `bionic/checkpoint`; later work is on `main`.

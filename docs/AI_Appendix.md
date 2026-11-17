@@ -49,4 +49,4 @@ The Part I claims were checked against the source lines, not taken on trust: `n 
 
 ## Contribution statement
 
-*[To be completed by the group: one or two sentences on what each member did.]*
+Max Levin worked alone on this problem set. The code, tests and written documents were produced with Claude Code under his direction, as described in this appendix.
