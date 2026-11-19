@@ -27,8 +27,8 @@ each Mathematica table beside its Python counterpart with mismatches in red.
 | scenario3 | new securities and settle date | full-precision export from Mathematica 15.0.1 | 9 of 9 outputs pass, 570 of 570 cells |
 
 Every one of the 2,104 cells shows the identical displayed value; none needs the
-one-unit tolerance. All 40 tests pass, including the comparison of individual
-functions with `reference/unit_values.json` at full precision.
+one-unit tolerance. All 61 tests pass, including 21 that compare each translated function
+with Mathematica at full precision (`tests/test_distfn_vs_mathematica.py`).
 
 The scenario references were produced by running `mathematica/RunScenarios.wl`
 in Wolfram Cloud. To regenerate them with a local Mathematica:
