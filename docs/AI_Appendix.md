@@ -1,5 +1,5 @@
 ---
-title: "Problem 5: AI Appendix"
+title: "Problem 5: AI Appendix and Contribution Statement"
 subtitle: "PPHA 42525 Risk Management, Autumn 2026 (not counted in the 2-page report)"
 geometry: "margin=1.8cm"
 fontsize: 10pt
@@ -51,3 +51,7 @@ Later short prompts asked the AI to commit and push, to run the Mathematica scen
 Every Part I claim was checked against the source line behind it rather than taken on trust: `n = 9` and `i < Length[seclist]` in the display cell, `Pick[marketDataValues, ...]` inside `eqtyFutpv`, `alpha = 0.01; beta = 5` inside `varsumm`, and `Sign[riskFactorBumpUnit]` in `populateVCV`. Hand calculations confirmed the headline numbers: CAC exposure of 7 + 0.7 × 5 = €10.5 million equivalent, or \$13.65 million at 1.30, which at a 0.025365 daily volatility gives the displayed \$346,200; and a normal VaR of \$616,900 × (−2.658) = −\$1.64 million.
 
 The lesson is not that AI cannot translate this code. It translated nearly all of it correctly on the first pass. The open question is how much checking a team is willing to fund, because the errors that survive are the ones no one went looking for.
+
+## Contribution statement
+
+Max Levin and Claude Code completed this submission together. Max Levin directed the work, set the requirements and reviewed every result; Claude Code wrote the translation, tests and documents and ran the Mathematica checks in Wolfram Cloud. It is submitted for Study Group 2: Max Levin, Yunong Zhang, Malik Khan and Liz Villegas Riz.
